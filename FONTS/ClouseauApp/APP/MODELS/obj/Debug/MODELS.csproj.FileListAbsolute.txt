@@ -1,0 +1,8 @@
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\bin\Debug\MODELS.dll.config
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\bin\Debug\MODELS.dll
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\bin\Debug\MODELS.pdb
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\bin\Debug\EntityFramework.dll
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\bin\Debug\EntityFramework.xml
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\obj\Debug\MODELS.csprojResolveAssemblyReference.cache
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\obj\Debug\MODELS.dll
+D:\PROJETO_ENIWINE\FONTS\ClouseauApp\APP\MODELS\obj\Debug\MODELS.pdb

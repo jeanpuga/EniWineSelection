@@ -1,0 +1,97 @@
+﻿<link href="../../Content/Grid.css" rel="stylesheet" />
+<link href="../../Content/Shadow.css" rel="stylesheet" />
+
+<div data-ng-controller="GameController as vm">
+
+
+    <h6 class="text">Um suspeito, um local e uma arma.</h6>
+    <p class="small">Ajude Jaques Cluseau a desvendar esse caso!</p>
+
+    <section class="grid ">
+        <div class="box1 text-center">
+            <fieldset class="ss-item">
+                <legend class="text-capitalize" style="font-weight:bold;">suspeitos</legend>
+
+                <div ng-repeat="item in vm.data | filter:{ParametroTipoID:1}">
+                    <img class="rounded" src="{{'../../Content/IMAGES/'+(item.Valor|lowercase)+ '.jpeg'}}" ng-click="vm.select(item);" />
+                </div>
+            </fieldset>
+            <img ng-show="vm.isErrSuspect" style="width:35px;" src="../../Content/IMAGES/error-svgrepo-com.svg" />
+        </div>
+
+        <div class="box2 text-center">
+            <fieldset class="ss-item">
+                <legend class="text-capitalize" style="font-weight:bold;">Lugares</legend>
+                <div ng-repeat="item in vm.data | filter:{ParametroTipoID:2}">
+                    <img class="rounded" src="{{'../../Content/IMAGES/'+(item.Valor|lowercase)+ '.jpeg'}}" ng-click="vm.select(item);" />
+                </div>
+            </fieldset>
+            <img ng-show="vm.isErrPlace" style="width:35px;" src="../../Content/IMAGES/error-svgrepo-com.svg" />
+        </div>
+
+
+
+        <div class="box3 text-center">
+            <fieldset class="ss-item">
+                <legend class="text-capitalize" style="font-weight:bold;">armas</legend>
+                <div ng-repeat="item in vm.data | filter:{ParametroTipoID:3}">
+                    <img class="rounded" src="{{'../../Content/IMAGES/'+(item.Valor|lowercase)+ '.jpeg'}}" ng-click="vm.select(item);" />
+                </div>
+            </fieldset>
+
+            <img ng-show="vm.isErrWeapon" style="width:35px;" src="../../Content/IMAGES/error-svgrepo-com.svg" />
+        </div>
+
+
+
+        <div class="box4">
+            Tentativas
+            <h1 class="text-danger text-center">{{vm.tentativas}}</h1>
+            <fieldset class="ss-item">
+                <legend class="text-capitalize" style="font-weight:bold;">teoria</legend>
+                <div><img id="imgSuspect" class="rounded" src="../../Content/IMAGES/s.jpg" /></div>
+                <div><img id="imgPlace" class="rounded" src="../../Content/IMAGES/L.jpg" /></div>
+                <div><img id="imgWeapon" class="rounded" src="../../Content/IMAGES/a.jpg" /></div>
+                </br>
+                <button type="button" style="width:55px;" class="btn btn-success" ng-click="vm.submit()">Test</button>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                <button type="button" style="width:55px;" class="btn btn-danger" ng-click="vm.start()">New</button>
+            </fieldset>
+        </div>
+
+    </section>
+
+
+
+
+    <div class="modal fade" id="modalWinner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Você VENCEU!!!!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <fieldset class="ss-item" ng-repeat="item in vm.result">
+                        <legend>{{item.Valor}}</legend>
+                        <img class="rounded" style="width:150px;" src="{{'../../Content/IMAGES/'+(item.Valor|lowercase)+ '.jpeg'}}" />
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.start()">Jogue novamente!!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

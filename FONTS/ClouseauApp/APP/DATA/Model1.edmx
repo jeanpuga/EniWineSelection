@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ENIWINEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="ParametroID" />
+          </Key>
+          <Property Name="ParametroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParametroTipoID" Type="int" Nullable="false" />
+          <Property Name="Chave" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParametroTipo">
+          <Key>
+            <PropertyRef Name="ParametrosTipoID" />
+          </Key>
+          <Property Name="ParametrosTipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Placar">
+          <Key>
+            <PropertyRef Name="PlacarID" />
+          </Key>
+          <Property Name="PlacarID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioID" Type="bigint" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" Nullable="false" />
+          <Property Name="DataFim" Type="datetime" />
+          <Property Name="QuantidadeRodadas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NickName" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="NomeCompleto" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Parametros_ParametroTipo">
+          <End Role="ParametroTipo" Type="Self.ParametroTipo" Multiplicity="1" />
+          <End Role="Parametros" Type="Self.Parametros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParametroTipo">
+              <PropertyRef Name="ParametrosTipoID" />
+            </Principal>
+            <Dependent Role="Parametros">
+              <PropertyRef Name="ParametroTipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Placar_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Placar" Type="Self.Placar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Placar">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ENIWINEModelStoreContainer">
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParametroTipo" EntityType="Self.ParametroTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Placar" EntityType="Self.Placar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Parametros_ParametroTipo" Association="Self.FK_Parametros_ParametroTipo">
+            <End Role="ParametroTipo" EntitySet="ParametroTipo" />
+            <End Role="Parametros" EntitySet="Parametros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Placar_Usuarios" Association="Self.FK_Placar_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Placar" EntitySet="Placar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ENIWINEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="ParametroID" />
+          </Key>
+          <Property Name="ParametroID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParametroTipoID" Type="Int32" Nullable="false" />
+          <Property Name="Chave" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ParametroTipo" Relationship="Self.FK_Parametros_ParametroTipo" FromRole="Parametros" ToRole="ParametroTipo" />
+        </EntityType>
+        <EntityType Name="ParametroTipo">
+          <Key>
+            <PropertyRef Name="ParametrosTipoID" />
+          </Key>
+          <Property Name="ParametrosTipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Parametros" Relationship="Self.FK_Parametros_ParametroTipo" FromRole="ParametroTipo" ToRole="Parametros" />
+        </EntityType>
+        <EntityType Name="Placar">
+          <Key>
+            <PropertyRef Name="PlacarID" />
+          </Key>
+          <Property Name="PlacarID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioID" Type="Int64" Nullable="false" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Precision="3" />
+          <Property Name="QuantidadeRodadas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Placar_Usuarios" FromRole="Placar" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NickName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomeCompleto" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Placar" Relationship="Self.FK_Placar_Usuarios" FromRole="Usuarios" ToRole="Placar" />
+        </EntityType>
+        <Association Name="FK_Parametros_ParametroTipo">
+          <End Role="ParametroTipo" Type="Self.ParametroTipo" Multiplicity="1" />
+          <End Role="Parametros" Type="Self.Parametros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParametroTipo">
+              <PropertyRef Name="ParametrosTipoID" />
+            </Principal>
+            <Dependent Role="Parametros">
+              <PropertyRef Name="ParametroTipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Placar_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Placar" Type="Self.Placar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioID" />
+            </Principal>
+            <Dependent Role="Placar">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ENIWINEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" />
+          <EntitySet Name="ParametroTipo" EntityType="Self.ParametroTipo" />
+          <EntitySet Name="Placar" EntityType="Self.Placar" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_Parametros_ParametroTipo" Association="Self.FK_Parametros_ParametroTipo">
+            <End Role="ParametroTipo" EntitySet="ParametroTipo" />
+            <End Role="Parametros" EntitySet="Parametros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Placar_Usuarios" Association="Self.FK_Placar_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Placar" EntitySet="Placar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ENIWINEModelStoreContainer" CdmEntityContainer="ENIWINEEntities">
+          <EntitySetMapping Name="Parametros">
+            <EntityTypeMapping TypeName="ENIWINEModel.Parametros">
+              <MappingFragment StoreEntitySet="Parametros">
+                <ScalarProperty Name="ParametroID" ColumnName="ParametroID" />
+                <ScalarProperty Name="ParametroTipoID" ColumnName="ParametroTipoID" />
+                <ScalarProperty Name="Chave" ColumnName="Chave" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParametroTipo">
+            <EntityTypeMapping TypeName="ENIWINEModel.ParametroTipo">
+              <MappingFragment StoreEntitySet="ParametroTipo">
+                <ScalarProperty Name="ParametrosTipoID" ColumnName="ParametrosTipoID" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Placar">
+            <EntityTypeMapping TypeName="ENIWINEModel.Placar">
+              <MappingFragment StoreEntitySet="Placar">
+                <ScalarProperty Name="PlacarID" ColumnName="PlacarID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="QuantidadeRodadas" ColumnName="QuantidadeRodadas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ENIWINEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ENIWINEModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="NomeCompleto" ColumnName="NomeCompleto" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

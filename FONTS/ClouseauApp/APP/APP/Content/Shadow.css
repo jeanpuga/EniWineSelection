@@ -1,0 +1,21 @@
+﻿  .ss-item .ss-item-text {
+        background-color: white;
+        text-align: center;
+        padding: 10px 20px;
+        border-radius: 0 0 5px 5px;
+        font-weight: bold;
+    }
+
+    .ss-item .ss-item-text, .ss-item img {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 55px;
+    }
+
+    .ss-item img {
+        border-radius: 5px 5px 0 0;
+    }
+
+        .ss-item img:hover {
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+        }

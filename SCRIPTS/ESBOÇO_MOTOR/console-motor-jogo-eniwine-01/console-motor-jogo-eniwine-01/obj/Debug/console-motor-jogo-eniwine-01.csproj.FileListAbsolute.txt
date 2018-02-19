@@ -1,0 +1,6 @@
+D:\PROJETO_ENIWINE\SCRIPTS\ESBOÇO_MOTOR\console-motor-jogo-eniwine-01\console-motor-jogo-eniwine-01\bin\Debug\console-motor-jogo-eniwine-01.exe.config
+D:\PROJETO_ENIWINE\SCRIPTS\ESBOÇO_MOTOR\console-motor-jogo-eniwine-01\console-motor-jogo-eniwine-01\obj\Debug\console-motor-jogo-eniwine-01.csprojResolveAssemblyReference.cache
+D:\PROJETO_ENIWINE\SCRIPTS\ESBOÇO_MOTOR\console-motor-jogo-eniwine-01\console-motor-jogo-eniwine-01\bin\Debug\console-motor-jogo-eniwine-01.exe
+D:\PROJETO_ENIWINE\SCRIPTS\ESBOÇO_MOTOR\console-motor-jogo-eniwine-01\console-motor-jogo-eniwine-01\bin\Debug\console-motor-jogo-eniwine-01.pdb
+D:\PROJETO_ENIWINE\SCRIPTS\ESBOÇO_MOTOR\console-motor-jogo-eniwine-01\console-motor-jogo-eniwine-01\obj\Debug\console-motor-jogo-eniwine-01.exe
+D:\PROJETO_ENIWINE\SCRIPTS\ESBOÇO_MOTOR\console-motor-jogo-eniwine-01\console-motor-jogo-eniwine-01\obj\Debug\console-motor-jogo-eniwine-01.pdb

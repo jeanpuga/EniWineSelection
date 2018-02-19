@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/doc.min.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+   
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="~/Content/IMAGES/logotipo.jpg"   height="30" class="d-inline-block align-top" alt="">
+        </a>
+    </nav>
+
+    <div class="container body-content">
+
+        <div class="container-fluid">
+            <div class="row" style="min-height:500px">
+                <div class="col-md-5 col-lg-3 d-none d-sm-block detetive alert alert-warning">
+                    <img class="shadow " src="~/Content/IMAGES/detetive_particular.jpg" />
+                    <fieldset>
+                        <legend>O Jogo</legend>
+                        <p>O empresário Sean Bean foi assassinado e o corpo dele foi deixado na frente da delegacia de polícia. O Inspetor Jacques Clouseau foi escolhido para investigar este caso. Após uma série de investigações, ele organizou uma lista com prováveis assassinos, os locais do crime e quais armas poderiam ter sido utilizadas.</p>
+                    </fieldset>
+                </div>
+                <div class="col-sm-12 col-md-7 col-lg-9 viewport">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p class="small">&copy; @DateTime.Now.Year - Jean Puga</p>
+        </footer>
+    </div>
+
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Caso Sean Bean</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <img class="shadow " src="~/Content/IMAGES/detetive_particular.jpg" />
+                    <fieldset>
+                        <legend>O Jogo</legend>
+                        <p>O empresário Sean Bean foi assassinado e o corpo dele foi deixado na frente da delegacia de polícia. O Inspetor Jacques Clouseau foi escolhido para investigar este caso. Após uma série de investigações, ele organizou uma lista com prováveis assassinos, os locais do crime e quais armas poderiam ter sido utilizadas.</p>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-animate.min.js"></script>
+
+    <!--APP-->
+
+    <script src="~/App_Front/models/Teory.js"></script>
+    <script src="~/App_Front/models/Game.js"></script>
+
+    <script src="~/App_Front/app.module.js"></script>
+    <script src="~/App_Front/_infra/config.js"></script>
+    <script src="~/App_Front/controllers/game.controller.js"></script>
+    <script src="~/App_Front/controllers/score.controller.js"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1;
+        var isIPhone = ua.indexOf("iphone") > -1;
+        if(isAndroid ||isIPhone) {
+            $(document).ready(function(){
+                $("#myModal").modal('show');
+            });
+        }else{
+        }
+
+    </script>
+
+
+</body>
+</html>

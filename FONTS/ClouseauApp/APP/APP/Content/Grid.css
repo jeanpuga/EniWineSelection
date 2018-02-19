@@ -1,0 +1,32 @@
+﻿   .grid {
+        display: grid;
+        grid-gap: 3px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        /*grid-template-rows: repeat(5, 1fr);*/
+        justify-content: center;
+        /*max-height:100%;*/
+    }
+
+    [class^="box"] {
+        /*background-color: blue;*/
+        align-self: center;
+        justify-self: center;
+    }
+
+
+        [class^="box"] fieldset {
+            /*border: solid 1px #4cff00;*/
+            /*height:100%*/
+            text-align: center;
+        }
+
+            [class^="box"] fieldset legend {
+                font-size: small;
+            }
+
+            [class^="box"] fieldset div {
+                /*border: solid 1px #ff0000;*/
+                margin-top: 6px;
+                height: 35px;
+                width: 35px;
+            }

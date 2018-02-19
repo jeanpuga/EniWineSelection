@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ENIWINEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Parametros">
+    <Key>
+      <PropertyRef Name="ParametroID" />
+    </Key>
+    <Property Name="ParametroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParametroTipoID" Type="int" Nullable="false" />
+    <Property Name="Chave" Type="int" Nullable="false" />
+    <Property Name="Valor" Type="varchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParametroTipo">
+    <Key>
+      <PropertyRef Name="ParametrosTipoID" />
+    </Key>
+    <Property Name="ParametrosTipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Placar">
+    <Key>
+      <PropertyRef Name="PlacarID" />
+    </Key>
+    <Property Name="PlacarID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsuarioID" Type="bigint" Nullable="false" />
+    <Property Name="DataInicio" Type="datetime" Nullable="false" />
+    <Property Name="DataFim" Type="datetime" />
+    <Property Name="QuantidadeRodadas" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NickName" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="NomeCompleto" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Parametros_ParametroTipo">
+    <End Role="ParametroTipo" Type="Self.ParametroTipo" Multiplicity="1" />
+    <End Role="Parametros" Type="Self.Parametros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ParametroTipo">
+        <PropertyRef Name="ParametrosTipoID" />
+      </Principal>
+      <Dependent Role="Parametros">
+        <PropertyRef Name="ParametroTipoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Placar_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Placar" Type="Self.Placar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="Placar">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ENIWINEModelStoreContainer">
+    <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParametroTipo" EntityType="Self.ParametroTipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Placar" EntityType="Self.Placar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Parametros_ParametroTipo" Association="Self.FK_Parametros_ParametroTipo">
+      <End Role="ParametroTipo" EntitySet="ParametroTipo" />
+      <End Role="Parametros" EntitySet="Parametros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Placar_Usuarios" Association="Self.FK_Placar_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Placar" EntitySet="Placar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

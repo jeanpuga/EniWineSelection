@@ -1,0 +1,41 @@
+﻿<h2 class="text-muted">Score</h2>
+<div data-ng-controller="ScoreController as vm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9">
+                <fieldset class="form-group">
+                    <legend>Entre para nosso rank</legend>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="txtNickname">Nickname</label>
+                            <input type="text" tabindex="1" min="4" max="32" class="form-control" id="txtNickname" placeholder="Digite seu nick!" ng-model="vm.form.nick" " />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="txtNamefull">Nome completo</label>
+                            <input type="text" tabindex="2" min="4" max="256" class="form-control" id="txtNamefull" placeholder="Digite seu nome completo!" ng-model="vm.form.name" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <label for="txtEmail">Email</label>
+                            <input type="email" tabindex="3" min="10" max="256" class="form-control" id="txtEmail" placeholder="Digite seu email!" ng-model="vm.form.email" />
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12 text-right">
+                            <button class="btn btn-danger" tabindex="5" ng-click="vm.clear()">Limpar</button>
+                            <button class="btn btn-success" tabindex="9" ng-click="vm.save()">Salvar</button>
+                        </div>
+                    </div>
+         
+            </fieldset>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+
+
+
+</div>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ENIWINEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Parametros">
+    <Key>
+      <PropertyRef Name="ParametroID" />
+    </Key>
+    <Property Name="ParametroID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParametroTipoID" Type="Int32" Nullable="false" />
+    <Property Name="Chave" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ParametroTipo" Relationship="Self.FK_Parametros_ParametroTipo" FromRole="Parametros" ToRole="ParametroTipo" />
+  </EntityType>
+  <EntityType Name="ParametroTipo">
+    <Key>
+      <PropertyRef Name="ParametrosTipoID" />
+    </Key>
+    <Property Name="ParametrosTipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Parametros" Relationship="Self.FK_Parametros_ParametroTipo" FromRole="ParametroTipo" ToRole="Parametros" />
+  </EntityType>
+  <EntityType Name="Placar">
+    <Key>
+      <PropertyRef Name="PlacarID" />
+    </Key>
+    <Property Name="PlacarID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsuarioID" Type="Int64" Nullable="false" />
+    <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataFim" Type="DateTime" Precision="3" />
+    <Property Name="QuantidadeRodadas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Placar_Usuarios" FromRole="Placar" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NickName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NomeCompleto" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Placar" Relationship="Self.FK_Placar_Usuarios" FromRole="Usuarios" ToRole="Placar" />
+  </EntityType>
+  <Association Name="FK_Parametros_ParametroTipo">
+    <End Role="ParametroTipo" Type="Self.ParametroTipo" Multiplicity="1" />
+    <End Role="Parametros" Type="Self.Parametros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ParametroTipo">
+        <PropertyRef Name="ParametrosTipoID" />
+      </Principal>
+      <Dependent Role="Parametros">
+        <PropertyRef Name="ParametroTipoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Placar_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Placar" Type="Self.Placar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="Placar">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ENIWINEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Parametros" EntityType="Self.Parametros" />
+    <EntitySet Name="ParametroTipo" EntityType="Self.ParametroTipo" />
+    <EntitySet Name="Placar" EntityType="Self.Placar" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK_Parametros_ParametroTipo" Association="Self.FK_Parametros_ParametroTipo">
+      <End Role="ParametroTipo" EntitySet="ParametroTipo" />
+      <End Role="Parametros" EntitySet="Parametros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Placar_Usuarios" Association="Self.FK_Placar_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Placar" EntitySet="Placar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
